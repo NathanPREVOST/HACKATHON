@@ -1,5 +1,4 @@
-
-		// Fonction pour récupérer les données des points de fraîcheur depuis l'API OpenDataSoft
+// Fonction pour récupérer les données des points de fraîcheur depuis l'API OpenDataSoft
 function getPointsDeFraicheur() {
     var apiUrl = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=ilots-de-fraicheur-equipements-activites&facet=type&facet=payant&facet=arrondissement&facet=horaires_periode';
 
@@ -10,11 +9,14 @@ function getPointsDeFraicheur() {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // Traitement des données ici
-            var response = JSON.parse(xhr.responseText);
-            var records = response.records;
-
-            // Créez des marqueurs sur la carte pour afficher les emplacements
-            afficherMarqueursSurCarte(records);
+            try {
+                var response = JSON.parse(xhr.responseText);
+                var records = response.records;
+                // Créez des marqueurs sur la carte pour afficher les emplacements
+                afficherMarqueursSurCarte(records);
+            } catch (error) {
+                console.error('Erreur lors de l\'analyse JSON : ' + error.message);
+            }
         } else {
             console.error('Erreur de requête AJAX : ' + xhr.status);
         }
