@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>Hackathon</title>
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- Inclure l'API Google Maps avec votre clé API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhPIwFDjNs-PASkGJVsUyVAty_80OA-9Y&libraries=places&callback=initMap" async defer></script>
+
+
+</head>
+
+<body>
+    <!-- Barre de recherche centrée -->
+    <div id="search-container">
+        <input id="search-input" type="text" placeholder="Rechercher un lieu">
+        <button id="search-button">Rechercher</button>
+    </div>
+
+    <button id="showPointsButton">Afficher les points de fraîcheur</button>
+
+    <!-- Conteneur pour la carte -->
+    <div id="map">
+
+        <script>
+
+            // Fonction d'initialisation de la carte
+            function initMap() {
+                // Coordonnées initiales pour le centrage de la carte (ex. Paris)
+                var initialCoords = { lat: 48.8566, lng: 2.3522 };
+
+                // Création d'une instance de carte Google Maps
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: initialCoords,
+                    zoom: 12, // Niveau de zoom initial
+                    mapTypeControl: true, //affichage des options de contrôle
+                    mapTypeControlOptions: {
+						// Cette option sert à définir comment les options se placent
+						style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR },
+                });
+
+                // Création d'une instance de la barre de recherche
+                var searchInput = document.getElementById('search-input');
+                var searchButton = document.getElementById('search-button');
+                var searchBox = new google.maps.places.SearchBox(searchInput);
+
+                // Lorsque l'utilisateur effectue une recherche, centrez la carte sur le résultat
+                searchBox.addListener('places_changed', function () {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length === 0) {
+                        return;
+                    }
+
+                    // Récupérez les coordonnées du résultat de recherche
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function (place) {
+                        if (!place.geometry) {
+                            return;
+                        }
+                        bounds.extend(place.geometry.location);
+                    });
+
+                    // Centrez et zoomez la carte sur les résultats de recherche
+                    map.fitBounds(bounds);
+                });
+            }
+        </script>
+
+        <script src="requettes.js"></script>
+
+    </div>
+</body>
+</html>
