@@ -1,29 +1,29 @@
+
+<?php
+include 'header.php';
+?> 
+
 <!DOCTYPE html>
 <html>
 <head>
-
-    <meta charset="utf-8">
-    <title>Hackathon</title>
-    <link rel="stylesheet" href="style.css">
-
-
-    <!-- Inclure l'API Google Maps avec votre clé API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhPIwFDjNs-PASkGJVsUyVAty_80OA-9Y&libraries=places&callback=initMap" async defer></script>
-
-
+<link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Accueil</title>
 </head>
 
 <body>
+  <main>
+    <h1>Bonjour, <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest'; ?>!</h1>
+  </main>
+
+  <body>
     <!-- Barre de recherche centrée -->
     <div id="search-container">
         <input id="search-input" type="text" placeholder="Rechercher un lieu">
         <button id="search-button">Rechercher</button>
     </div>
 
-    <button id="showPointsButton">Afficher les points de fraîcheur</button>
-
     <!-- Conteneur pour la carte -->
-    <div id="map">
+    <div id="map"!important>
 
         <script>
 
@@ -35,11 +35,7 @@
                 // Création d'une instance de carte Google Maps
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: initialCoords,
-                    zoom: 12, // Niveau de zoom initial
-                    mapTypeControl: true, //affichage des options de contrôle
-                    mapTypeControlOptions: {
-						// Cette option sert à définir comment les options se placent
-						style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR },
+                    zoom: 12 // Niveau de zoom initial
                 });
 
                 // Création d'une instance de la barre de recherche
@@ -70,8 +66,13 @@
             }
         </script>
 
-        <script src="requettes.js"></script>
+
+        <!-- Inclure l'API Google Maps avec votre clé API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhPIwFDjNs-PASkGJVsUyVAty_80OA-9Y&libraries=places&callback=initMap" async defer></script>
+
+        <script src="reqettes.js"></script>
 
     </div>
 </body>
-</html>
+</body>
+<?php include 'footer.php'; ?>

@@ -1,11 +1,14 @@
 <style>
-    /* Style pour la carte en plein écran */
-    #map {
-        height: 50% !important;
-        width: 50% !important;
-        position: absolute !important;
-        align: center;
-    }
+/* Style pour la carte centrée horizontalement et verticalement avec des marges */
+#map {
+    height: 50%; /* Utilisez 50% de la hauteur totale de l'écran */
+    width: 50%; /* Utilisez 50% de la largeur totale de l'écran */
+    position: absolute;
+    top: 25%; /* Marge de 25% en haut */
+    left: 25%; /* Marge de 25% à gauche */
+    z-index: 0; /* Placez la carte en arrière-plan */
+}
+
 
 
     /* Style pour la barre de recherche */
