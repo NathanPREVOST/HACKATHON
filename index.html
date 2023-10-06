@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8">
     <title>Hackathon</title>
     <link rel="stylesheet" href="style.css">
+
+
+    <!-- Inclure l'API Google Maps avec votre clé API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhPIwFDjNs-PASkGJVsUyVAty_80OA-9Y&libraries=places&callback=initMap" async defer></script>
+
+
 </head>
+
 <body>
     <!-- Barre de recherche centrée -->
     <div id="search-container">
@@ -11,8 +20,9 @@
         <button id="search-button">Rechercher</button>
     </div>
 
+
     <!-- Conteneur pour la carte -->
-    <div id="map"!important>
+    <div id="map">
 
         <script>
 
@@ -24,7 +34,11 @@
                 // Création d'une instance de carte Google Maps
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: initialCoords,
-                    zoom: 12 // Niveau de zoom initial
+                    zoom: 12, // Niveau de zoom initial
+                    mapTypeControl: true, //affichage des options de contrôle
+                    mapTypeControlOptions: {
+						// Cette option sert à définir comment les options se placent
+						style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR },
                 });
 
                 // Création d'une instance de la barre de recherche
@@ -55,11 +69,7 @@
             }
         </script>
 
-
-        <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhPIwFDjNs-PASkGJVsUyVAty_80OA-9Y&libraries=places&callback=initMap" async defer></script>
-
-        <script src="reqettes.js"></script>
+        <script src="requettes.js"></script>
 
     </div>
 </body>

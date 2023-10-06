@@ -1,10 +1,12 @@
 <style>
     /* Style pour la carte en plein écran */
     #map {
-        height: 90% !important;
-        width: 90% !important;
-        position: fixed !important;
+        height: 50% !important;
+        width: 50% !important;
+        position: absolute !important;
+        align: center;
     }
+
 
     /* Style pour la barre de recherche */
     #search-container {
